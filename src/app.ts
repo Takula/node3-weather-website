@@ -2,7 +2,6 @@
 import express, { response } from 'express'
 import path from 'path'
 import hbs from 'hbs'
-import { partials } from 'handlebars';
 import * as geocode from '../../weather-app/utils/geocode';
 import * as weather from '../../weather-app/utils/forecast';
 
