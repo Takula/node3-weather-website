@@ -2,19 +2,12 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var path_1 = __importDefault(require("path"));
 var hbs_1 = __importDefault(require("hbs"));
-var geocode = __importStar(require("../../weather-app/utils/geocode"));
-var weather = __importStar(require("../../weather-app/utils/forecast"));
+var geocode_1 = require("./geocode");
+var forecast_1 = require("./forecast");
 var app = express_1.default();
 var dir = path_1.default.join(__dirname, '../public');
 var viewsPath = path_1.default.join(__dirname, './templates/views');
@@ -50,14 +43,14 @@ app.get('/weather', function (req, res) {
             error: 'An address is required'
         });
     }
-    geocode.getCoordinates(address, function (error, _a) {
+    geocode_1.getCoordinates(address, function (error, _a) {
         var _b = _a === void 0 ? {} : _a, latitude = _b.latitude, longitude = _b.longitude, location = _b.location;
         if (error) {
             return res.send({
                 error: error
             });
         }
-        weather.getForecast(latitude, longitude, function (error, data) {
+        forecast_1.getForecast(latitude, longitude, function (error, data) {
             if (error) {
                 return res.send({
                     error: error
@@ -86,5 +79,5 @@ app.get('*', function (request, response) {
     });
 });
 app.listen(port, function () {
-    console.log('Server is up on port' + port);
+    console.log('Server is up on port ' + port);
 });

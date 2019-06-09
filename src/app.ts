@@ -2,8 +2,8 @@
 import express, { response } from 'express'
 import path from 'path'
 import hbs from 'hbs'
-import * as geocode from '../../weather-app/utils/geocode';
-import * as weather from '../../weather-app/utils/forecast';
+import { getCoordinates } from './geocode';
+import { getForecast } from './forecast';
 
 let app  = express();
 const dir : string = path.join(__dirname, '../public');
@@ -49,14 +49,14 @@ app.get('/weather', (req, res) => {
         });
     }
 
-    geocode.getCoordinates(address, (error, {latitude, longitude, location} = {}) => {
+    getCoordinates(address, (error, {latitude, longitude, location} = {}) => {
         if(error) {
             return res.send({
                 error : error
             });
         }
 
-        weather.getForecast(latitude, longitude, (error, data) => {
+        getForecast(latitude, longitude, (error, data) => {
             if(error) {
                 return res.send({
                     error
@@ -91,5 +91,5 @@ app.get('*', (request, response) => {
 })
 
 app.listen(port, () => {
-    console.log('Server is up on port' + port)
+    console.log('Server is up on port ' + port)
 })
