@@ -8,7 +8,7 @@ searchForm.addEventListener('submit', function ($event) {
     var successMessage = document.querySelector('#success-message');
     errorMessage.textContent = 'Loading...';
     successMessage.textContent = '';
-    fetch("http://localhost:3000/weather?address=" + location).then(function (response) {
+    fetch("/weather?address=" + location).then(function (response) {
         response.json().then(function (data) {
             if (data.error) {
                 return errorMessage.textContent = data.error;

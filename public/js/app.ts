@@ -16,7 +16,7 @@ searchForm.addEventListener('submit', ($event : Event) => {
     successMessage.textContent = '';
 
 
-    fetch(`http://localhost:3000/weather?address=${location}`).then((response : Response) => {
+    fetch(`/weather?address=${location}`).then((response : Response) => {
         response.json().then((data : any) => {
             if(data.error) {
                 return errorMessage.textContent = data.error;

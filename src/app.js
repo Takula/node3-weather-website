@@ -19,6 +19,7 @@ var app = express_1.default();
 var dir = path_1.default.join(__dirname, '../public');
 var viewsPath = path_1.default.join(__dirname, './templates/views');
 var partialsPath = path_1.default.join(__dirname, './templates/partials');
+var port = process.env.PORT || '3000';
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
 hbs_1.default.registerPartials(partialsPath);
@@ -84,6 +85,6 @@ app.get('*', function (request, response) {
         name: 'Takula Lenyatso'
     });
 });
-app.listen(3000, function () {
-    console.log('Server is up on port 3000');
+app.listen(port, function () {
+    console.log('Server is up on port' + port);
 });
