@@ -19,7 +19,7 @@ var app = express_1.default();
 var dir = path_1.default.join(__dirname, '../public');
 var viewsPath = path_1.default.join(__dirname, './templates/views');
 var partialsPath = path_1.default.join(__dirname, './templates/partials');
-var port = process.env.PORT || '3000';
+var port = process.env.PORT || 3000;
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
 hbs_1.default.registerPartials(partialsPath);
