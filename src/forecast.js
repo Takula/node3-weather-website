@@ -17,7 +17,8 @@ function getForecast(latitude, longitude, callback) {
         else {
             var currently = body.currently;
             var today = body.daily.data[0];
-            callback(undefined, today.summary + " It is currently " + currently.temperature + " degrees outside. There is a " + currently.precipProbability + "% chance of rain.");
+            console.log(today);
+            callback(undefined, today.summary + " It is currently " + currently.temperature + " degrees outside. There is a " + currently.precipProbability + "% chance of rain. Maximum temperature is " + today.temperatureMax + ", minimum temperature is " + today.temperatureMin + ".");
         }
     });
 }
